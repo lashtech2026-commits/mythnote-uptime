@@ -1,31 +1,64 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Mythnote Upptime — 公开掉线监测（独立仓，不进 lashtech-daemon）
+# 探测全部为只读 GET：不改店铺、不写库、不触发支付。
+
+owner: lashtech2026-commits
+repo: mythnote-uptime
+
+user-agent: Mythnote-Upptime/1.0
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  # 1) 独立站（Shopify）
+  - name: Mythnote Beauty site
+    url: https://mythnotebeauty.com
+    maxResponseTime: 10000
+    expectedStatusCodes:
+      - 200
+      - 301
+      - 302
+
+  - name: Mythnote Beauty www
+    url: https://www.mythnotebeauty.com
+    maxResponseTime: 10000
+    expectedStatusCodes:
+      - 200
+      - 301
+      - 302
+
+  # 2) Supabase 网关存活（不带 anon key；401=网关在应答，算正常）
+  - name: Supabase REST gateway
+    url: https://mggysipvazeogmhqnvcv.supabase.co/rest/v1/
+    maxResponseTime: 8000
+    expectedStatusCodes:
+      - 401
+
+  # 3) 公开 Edge：区域提示（只读，无鉴权）
+  - name: Edge regional-hint
+    url: https://mggysipvazeogmhqnvcv.supabase.co/functions/v1/regional-hint
+    maxResponseTime: 8000
+    expectedStatusCodes:
+      - 200
+      - 429
+
+  # 4) 公开 Edge：支付回跳说明页（只读 GET，不写库；429=限流仍算服务在）
+  - name: Edge payment-return
+    url: https://mggysipvazeogmhqnvcv.supabase.co/functions/v1/payment-return
+    maxResponseTime: 8000
+    expectedStatusCodes:
+      - 200
+      - 429
+
+assignees: []
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  baseUrl: /mythnote-uptime
+  name: Mythnote Status
+  introTitle: "Mythnote 服务状态"
+  introMessage: "独立站与后台公开接口的公开监测页。掉线会自动开 GitHub Issue；邮件通知需另配 SMTP（见 README）。"
   navbar:
     - title: Status
       href: /
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# 邮件等通知：全部用仓库 Secrets，不要写进本文件。
+# 需要的 Secret 名见 README「邮件还差什么」。
