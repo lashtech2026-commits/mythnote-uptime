@@ -8,12 +8,12 @@
 
 ## 监测哪些地址
 
-| 名称 | 说明 | 算正常 |
-|---|---|---|
-| Mythnote Beauty site / www | 独立站 | 200 / 301 / 302 |
-| Supabase REST gateway | 后台网关存活（故意不带密钥） | **401** |
-| Edge regional-hint | 区域提示（只读） | 200 / 429 |
-| Edge payment-return | 支付回跳说明（只读 GET，不写库） | 200 / 429 |
+| 名称                       | 说明                             | 算正常          |
+| -------------------------- | -------------------------------- | --------------- |
+| Mythnote Beauty site / www | 独立站                           | 200 / 301 / 302 |
+| Supabase REST gateway      | 后台网关存活（故意不带密钥）     | **401**         |
+| Edge regional-hint         | 区域提示（只读）                 | 200 / 429       |
+| Edge payment-return        | 支付回跳说明（只读 GET，不写库） | 200 / 429       |
 
 全部只读 GET，不碰支付写接口、不写库。
 
@@ -29,22 +29,22 @@
 1. **有人能在本仓 Settings → Secrets and variables → Actions 里添加 Secrets**（或给运维 token 开「Secrets」写权限）。
 2. 添加这些 Secret（名字必须一致，**值不要发到会议室**）：
 
-| Secret 名 | 填什么 |
-|---|---|
-| `NOTIFICATION_EMAIL` | `true` |
-| `NOTIFICATION_EMAIL_FROM` | 发件邮箱（Gmail 建议与 SMTP 用户名相同） |
-| `NOTIFICATION_EMAIL_TO` | `mythnotelashes@gmail.com` |
-| `NOTIFICATION_EMAIL_SMTP` | `true` |
-| `NOTIFICATION_EMAIL_SMTP_HOST` | `smtp.gmail.com` |
-| `NOTIFICATION_EMAIL_SMTP_PORT` | `587` |
-| `NOTIFICATION_EMAIL_SMTP_USERNAME` | Gmail 账号 |
+| Secret 名                          | 填什么                                                    |
+| ---------------------------------- | --------------------------------------------------------- |
+| `NOTIFICATION_EMAIL`               | `true`                                                    |
+| `NOTIFICATION_EMAIL_FROM`          | 发件邮箱（Gmail 建议与 SMTP 用户名相同）                  |
+| `NOTIFICATION_EMAIL_TO`            | `mythnotelashes@gmail.com`                                |
+| `NOTIFICATION_EMAIL_SMTP`          | `true`                                                    |
+| `NOTIFICATION_EMAIL_SMTP_HOST`     | `smtp.gmail.com`                                          |
+| `NOTIFICATION_EMAIL_SMTP_PORT`     | `587`                                                     |
+| `NOTIFICATION_EMAIL_SMTP_USERNAME` | Gmail 账号                                                |
 | `NOTIFICATION_EMAIL_SMTP_PASSWORD` | **Gmail「应用专用密码」**（不是登录密码；需先开两步验证） |
 
 **必须先加（否则 Actions 会红）：**
 
-| Secret 名 | 填什么 |
-|---|---|
-| `GH_PAT` | 对本仓有 Contents / Issues / Actions / Workflows **写**权限的 Personal Access Token |
+| Secret 名 | 填什么                                                                              |
+| --------- | ----------------------------------------------------------------------------------- |
+| `GH_PAT`  | 对本仓有 Contents / Issues / Actions / Workflows **写**权限的 Personal Access Token |
 
 没有 `GH_PAT`，Setup/Uptime 无法把监测结果推回仓库（已实测：`github-actions[bot]` 403）。
 
