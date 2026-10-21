@@ -40,13 +40,13 @@
 | `NOTIFICATION_EMAIL_SMTP_USERNAME` | Gmail 账号 |
 | `NOTIFICATION_EMAIL_SMTP_PASSWORD` | **Gmail「应用专用密码」**（不是登录密码；需先开两步验证） |
 
-另外建议加：
+**必须先加（否则 Actions 会红）：**
 
 | Secret 名 | 填什么 |
 |---|---|
-| `GH_PAT` | 对本仓有 Contents / Issues / Actions / Workflows 写权限的 Personal Access Token（让 Upptime 能提交状态、开 issue） |
+| `GH_PAT` | 对本仓有 Contents / Issues / Actions / Workflows **写**权限的 Personal Access Token |
 
-没有 `GH_PAT` 时，部分工作流会尝试用默认 `GITHUB_TOKEN`；若 Actions 报权限不足，再补 `GH_PAT`。
+没有 `GH_PAT`，Setup/Uptime 无法把监测结果推回仓库（已实测：`github-actions[bot]` 403）。
 
 ## 怎么开 GitHub Pages
 
