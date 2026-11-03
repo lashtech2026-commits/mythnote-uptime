@@ -22,19 +22,20 @@
     "url": "https://www.mythnotebeauty.com",
     "icon": "https://icons.duckduckgo.com/ip3/www.mythnotebeauty.com.ico",
     "slug": "mythnote-beauty-www",
-    "status": "up",
-    "uptime": "97.80%",
-    "uptimeDay": "100.00%",
+    "status": "down",
+    "uptime": "97.84%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "95.92%",
-    "uptimeMonth": "97.80%",
-    "uptimeYear": "97.80%",
-    "time": 468,
-    "timeDay": 285,
-    "timeWeek": 464,
-    "timeMonth": 468,
-    "timeYear": 468,
+    "uptimeMonth": "97.84%",
+    "uptimeYear": "97.84%",
+    "time": 446,
+    "timeDay": 190,
+    "timeWeek": 427,
+    "timeMonth": 446,
+    "timeYear": 446,
     "dailyMinutesDown": {
-      "2026-11-01": 411
+      "2026-11-01": 411,
+      "2026-11-03": 0
     }
   },
   {
